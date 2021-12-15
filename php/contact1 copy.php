@@ -82,4 +82,23 @@ if(mail($address, $e_subject, $msg, $headers)) {
 	echo 'ERROR!';
 
 }
-
+if(isset($_POST['send'])){
+	print_r($_POST);
+	$url = "URL: https://www.google.com/recaptcha/api/siteverify METHOD: POST";
+	$data = [
+	  'secret' => '6LfRpK4ZAAAAAGusQuM3-ceQ4Ql5orQpNzjS30mD',
+	  'response' => $_POST['token'],
+	  'remoteip' => $_SERVER['REMOTE_ADDR']
+  ];
+  $options = array(
+	'https' => array(
+	  'header' => "Content-type: application/
+		x-www-form-urlencoded\r\n",
+	  'method' => 'POST',
+	  'content' => http_build_query($data)
+	)
+  );
+  
+  print_r($options);
+  }
+  
